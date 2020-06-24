@@ -1,0 +1,7 @@
+# -*- mode: yaml -*-
+dagster:
+  overrides:
+    pkg: dagster
+    conf_file: /usr/local/etc/dagster/dagster.conf
+  config:
+    key: othervalue

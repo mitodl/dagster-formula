@@ -1,0 +1,9 @@
+name: dagster
+os: RedHat, CentOS, Ubuntu, Debian
+os_family: RedHat, Debian
+version: 202006
+release: 1
+summary: SaltStack formula for deploying and managing the Dagster workflow engine for building data pipelines
+description: SaltStack formula for deploying and managing the Dagster workflow engine for building data pipelines
+top_level_dir: dagster
+recommended: 
