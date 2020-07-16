@@ -1,6 +1,4 @@
 base:
   '*':
     - dagster
-    
     - dagster.tests
-    
