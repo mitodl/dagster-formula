@@ -1,0 +1,31 @@
+#!/bin/bash
+
+export PATH=$PATH:{{ dagit_path }}
+
+start () {
+    {{ dagit_path }}/dagit -p {{ dagit_port }} -h {{ dagit_listen_address }} {{ dagit_flags|join(' ') }}
+}
+
+stop () {
+    /usr/bin/pkill -f dagit
+}
+
+case $1 in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    reload)
+        stop
+        sleep 1
+        start
+        ;;
+    restart)
+        stop
+        sleep 1
+        start
+        ;;
+    *) exit 1
+esac

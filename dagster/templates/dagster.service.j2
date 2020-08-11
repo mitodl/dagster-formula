@@ -1,0 +1,13 @@
+[Unit]
+Description=Dagit process for managing Dagster pipeline execution
+After=network.target
+
+[Service]
+Type=simple
+User={{ user }}
+Environment=DAGSTER_HOME={{ dagster_home }}
+Environment=LC_ALL=en_US.UTF-8
+Environment=LANG=en_US.UTF-8
+ExecStart=/usr/local/bin/dagit.sh start
+Restart=always
+WorkingDirectory={{ dagster_home }}
