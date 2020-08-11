@@ -1,11 +1,21 @@
 {% set dagster = salt.grains.filter_by({
     'default': {
-        'pkgs': ['dagster'],
-        'service': 'dagster',
-        'conf_file': '/etc/dagster/dagster.conf',
+        'service': 'dagit',
+        'home': '/opt/dagster/',
+        'user': 'dagster',
+        'group': 'dagster',
         'config': {
-            'key': 'value',
+            'instance': {
+            }
         },
+        'dagit': {
+            'path': '/usr/local/bin/',
+            'port': 3000,
+            'listen_address': '0.0.0.0',
+            'flags': [
+                '-w workspace.yaml'
+            ]
+        }
     },
     'Debian': {
     },

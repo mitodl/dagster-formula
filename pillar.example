@@ -1,7 +1,16 @@
 # -*- mode: yaml -*-
 dagster:
-  overrides:
-    pkg: dagster
-    conf_file: /usr/local/etc/dagster/dagster.conf
+  home: /opt/ol_data_pipelines
+  dagit:
+    path: /opt/ol_data_pipelines/bin
+    flags: -w etc/workspace.yaml
   config:
-    key: othervalue
+    instance:
+      dagit:
+      run_storage:
+        module: dagster.core.storage.runs
+        class: SqliteRunStorage
+        config:
+          base_dir: /opt/dagster/
+  pkg_sources:
+    - ol-data-pipelines: https://ol-eng-artifacts.s3.amazonaws.com/ol-data-pipelines/ol-data-pipelines_0.1.0_amd64.deb

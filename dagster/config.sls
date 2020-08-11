@@ -1,15 +1,16 @@
-{% from "dagster/map.jinja" import dagster with context %}
+#!pyobjects
+#~*~ mode: Python ~*~
+import yaml
 
-include:
-  - .install
-  - .service
+dagster = salt.jinja.load_map('dagster/map.jinja', 'dagster')
 
-dagster-config:
-  file.managed:
-    - name: {{ dagster.conf_file }}
-    - source: salt://dagster/templates/conf.jinja
-    - template: jinja
-    - watch_in:
-      - service: dagster_service_running
-    - require:
-      - pkg: dagster
+include('.service')
+
+File.managed(
+    'dagster_configuration_file',
+    name='{0}/dagster.yaml'.format(dagster['home']),
+    contents=yaml.dump(dagster['config']['instance'], default_flow_style=False),
+    user=dagster['user'],
+    group=dagster['group'],
+    onchanges_in=[Service('dagster_service_running')]
+)
