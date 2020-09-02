@@ -33,7 +33,7 @@ File.managed(
         'dagit_path': dagster['dagit']['path'],
         'dagit_port': dagster['dagit']['port'],
         'dagit_listen_address': dagster['dagit']['listen_address'],
-        'dagit_flags': dagster['dagit']['flags']
+        'dagit_flags': dagster['dagit']['flags'].join(' ')
     },
     mode='0755'
 )

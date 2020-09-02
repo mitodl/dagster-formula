@@ -3,7 +3,7 @@
 export PATH=$PATH:{{ dagit_path }}
 
 start () {
-    {{ dagit_path }}/dagit -p {{ dagit_port }} -h {{ dagit_listen_address }} {{ dagit_flags|join(' ') }}
+    {{ dagit_path }}/dagit -p {{ dagit_port }} -h {{ dagit_listen_address }} {{ dagit_flags }}
 }
 
 stop () {
