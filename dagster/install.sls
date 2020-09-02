@@ -25,28 +25,17 @@ Pkg.installed(
 )
 
 File.managed(
-    'create_dagit_control_script',
-    name='/usr/local/bin/dagit.sh',
-    template='jinja',
-    source='salt://dagster/templates/dagit.sh.j2',
-    context={
-        'dagit_path': dagster['dagit']['path'],
-        'dagit_port': dagster['dagit']['port'],
-        'dagit_listen_address': dagster['dagit']['listen_address'],
-        'dagit_flags': dagster['dagit']['flags'].join(' ')
-    },
-    mode='0755'
-)
-
-File.managed(
     'create_dagit_systemd_unit',
     name='/etc/systemd/system/dagit.service',
     template='jinja',
     source='salt://dagster/templates/dagster.service.j2',
     context={
         'user': dagster['user'],
-        'dagster_home': dagster['home']
+        'dagster_home': dagster['home'],
+        'dagit_path': dagster['dagit']['path'],
+        'dagit_port': dagster['dagit']['port'],
+        'dagit_listen_address': dagster['dagit']['listen_address'],
+        'dagit_flags': dagster['dagit']['flags'].join(' ')
     },
-    require=File('create_dagit_control_script'),
     require_in=Service('dagster_service_running')
 )

@@ -6,8 +6,10 @@ After=network.target
 Type=simple
 User={{ user }}
 Environment=DAGSTER_HOME={{ dagster_home }}
+Environment=PATH=$PATH:{{ dagit_path }}
 Environment=LC_ALL=en_US.UTF-8
 Environment=LANG=en_US.UTF-8
-ExecStart=/usr/local/bin/dagit.sh start
+ExecStart=dagit -p {{ dagit_port }} -h {{ dagit_listen_address }} {{ dagit_flags }}
+ExecStop=/usr/bin/pkill -f dagit
 Restart=always
 WorkingDirectory={{ dagster_home }}
