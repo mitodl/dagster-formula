@@ -35,7 +35,7 @@ File.managed(
         'dagit_path': dagster['dagit']['path'],
         'dagit_port': dagster['dagit']['port'],
         'dagit_listen_address': dagster['dagit']['listen_address'],
-        'dagit_flags': dagster['dagit']['flags'].join(' ')
+        'dagit_flags': ' '.join(dagster['dagit']['flags'])
     },
     require_in=Service('dagster_service_running')
 )
