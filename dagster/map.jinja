@@ -4,17 +4,16 @@
         'home': '/opt/dagster/',
         'user': 'dagster',
         'group': 'dagster',
-        'config': {
-            'instance': {
-            }
-        },
+        'config_dir': '/etc/dagster/',
+        'instance_config': {},
+        'pipeline_configs': {},
         'dagit': {
             'path': '/usr/local/bin/',
             'port': 3000,
             'listen_address': '0.0.0.0',
             'flags': [
                 '-w /etc/dagster/workspace.yaml'
-            ]
+            ],
         }
     },
     'Debian': {
