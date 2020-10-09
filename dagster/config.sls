@@ -22,5 +22,6 @@ for pipeline, config in dagster['pipeline_configs'].items():
         user=dagster['user'],
         group=dagster['group'],
         makedirs=True,
-        contents=yaml.dump(config, default_flow_style=False)
+        contents=yaml.dump(config, default_flow_style=False),
+        onchanges_in=[Service('dagster_service_running')]
     )
