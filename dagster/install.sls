@@ -21,7 +21,7 @@ Group.present(
 Pkg.installed(
     'install_dagit_and_dagster_packages',
     sources=dagster['pkg_sources'],
-    require_in=Service('dagster_service_running')
+    onchanges_in=Service('dagster_service_running')
 )
 
 File.managed(
