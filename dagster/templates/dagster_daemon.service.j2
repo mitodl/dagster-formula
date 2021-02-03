@@ -1,0 +1,15 @@
+[Unit]
+Description=Dagster daemon process for managing schedules and sensors
+After=network.target
+
+[Service]
+Type=simple
+User={{ user }}
+Environment=DAGSTER_HOME={{ dagster_home }}
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin::{{ dagit_path }}
+Environment=LC_ALL=en_US.UTF-8
+Environment=LANG=en_US.UTF-8
+ExecStart={{ dagit_path }}/dagster-daemon run
+ExecStop=/usr/bin/pkill -f dagster-daemon
+Restart=always
+WorkingDirectory={{ dagster_home }}

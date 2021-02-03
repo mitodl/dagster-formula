@@ -39,3 +39,19 @@ File.managed(
     },
     require_in=Service('dagster_service_running')
 )
+
+File.managed(
+    'create_dagster_daemon_systemd_unit',
+    name='/etc/systemd/system/dagster-daemon.service',
+    template='jinja',
+    source='salt://dagster/templates/dagster_daemon.service.j2',
+    context={
+        'user': dagster['user'],
+        'dagster_home': dagster['home'],
+        'dagit_path': dagster['dagit']['path'],
+        'dagit_port': dagster['dagit']['port'],
+        'dagit_listen_address': dagster['dagit']['listen_address'],
+        'dagit_flags': ' '.join(dagster['dagit']['flags'])
+    },
+    require_in=Service('dagster_daemon_running')
+)

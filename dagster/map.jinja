@@ -1,6 +1,7 @@
 {% set dagster = salt.grains.filter_by({
     'default': {
         'service': 'dagit',
+        'daemon': 'dagster-daemon',
         'home': '/opt/dagster/',
         'user': 'dagster',
         'group': 'dagster',
